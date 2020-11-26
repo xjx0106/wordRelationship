@@ -573,7 +573,7 @@ export default {
 <style>
 html {
   height: 100%;
-  background-color: #e1e1e1;
+  background-color: #e7e7e7;
 }
 body {
   margin: 0px;
