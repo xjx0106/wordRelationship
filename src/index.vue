@@ -533,19 +533,34 @@ export default {
 </script>
 
 <style>
+
+body {
+  background-color: #e1e1e1;
+  padding: 10px;
+}
 .main {
+  width: 100%;
+  height: 100%;
+  background: white;
+  padding-top: 100px;
 }
 #canvasContainer {
-  border: 1px solid red;
+  margin: auto;
+  width: 80%;
   height: 400px;
+  box-shadow: 0px 0px 20px 0px #c1c1c1;
+  border-radius: 30px;
 }
 .buttons {
+  border: 1px solid #87CEFA10;
   margin-top: 100px;
-  border: 1px solid gold;
   height: 100px;
   width: 100%;
+  background-color: #87CEFA10;
 }
 .button {
+  margin: auto;
+  margin-top: 30px;
   width: 80px;
   height: 40px;
   background: #18f;
