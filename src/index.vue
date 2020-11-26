@@ -552,11 +552,11 @@ body {
   border-radius: 30px;
 }
 .buttons {
-  border: 1px solid #87CEFA10;
+  border: 1px solid #8a98a130;
   margin-top: 100px;
   height: 100px;
   width: 100%;
-  background-color: #87CEFA10;
+  background-color: #87CEFA30;
 }
 .button {
   margin: auto;
