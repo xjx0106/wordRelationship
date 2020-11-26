@@ -552,7 +552,7 @@ body {
   border-radius: 30px;
 }
 .buttons {
-  border-top: 2px solid #8a98a126;
+  border-top: 1px solid #8a98a126;
   margin-top: 100px;
   height: 100px;
   width: 100%;
