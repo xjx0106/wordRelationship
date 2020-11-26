@@ -1,0 +1,104 @@
+{
+  "nodes": [
+    {
+      "index": 0,
+      "nature": "实体",
+      "word": "福建"
+    },
+    {
+      "index": 1,
+      "nature": "实体",
+      "word": "长度"
+    },
+    {
+      "index": 2,
+      "nature": "比较词",
+      "word": "大于"
+    },
+    {
+      "index": 3,
+      "nature": "数词",
+      "word": "1000"
+    },
+    {
+      "index": 4,
+      "nature": "量词",
+      "word": "米"
+    },
+    {
+      "index": 5,
+      "nature": "附加词",
+      "word": "的"
+    },
+    {
+      "index": 6,
+      "nature": "标签",
+      "word": "隧道"
+    },
+    {
+      "index": 7,
+      "nature": "连接词",
+      "word": "有"
+    },
+    {
+      "index": 8,
+      "nature": "询问词",
+      "word": "哪些"
+    },
+    {
+      "index": 9,
+      "nature": "标点符号",
+      "word": "？"
+    }
+  ],
+  "relations": [
+    {
+      "start": 2,
+      "end": 1,
+      "label": "名词性主语"
+    },
+    {
+      "start": 4,
+      "end": 3,
+      "label": "数词修饰语"
+    },
+    {
+      "start": 7,
+      "end": 6,
+      "label": "主题"
+    },
+    {
+      "start": 7,
+      "end": 8,
+      "label": "直接宾语"
+    },
+    {
+      "start": 2,
+      "end": 4,
+      "label": "数量词间接宾语"
+    },
+    {
+      "start": 7,
+      "end": 9,
+      "label": "标点符号"
+    },
+    {
+      "start": 2,
+      "end": 5,
+      "label": "补语"
+    },
+    {
+      "start": 6,
+      "end": 2,
+      "label": "相关关系"
+    },
+    {
+      "start": 6,
+      "end": 0,
+      "label": "复合名词修饰"
+    }
+  ],
+  "backupOfXujingxinsWithoutUseage": [
+    "NR","NN","VV","CD","DEDC","DEC","NN","VE","DT","PU"
+  ]
+}
