@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    <div class="title">词性依存可视化</div>
     <div id="canvasContainer"></div>
     <div class="buttons">
       <div class="button" @click="loadData">渲 染</div>
@@ -538,7 +539,15 @@ export default {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  padding-top: 100px;
+  padding-top: 160px;
+  .title {
+    position:absolute;
+    font-size: 40px;
+    font-family: "dengxian";
+    left: 120px;
+    top: 80px;
+    user-select: none;
+  }
   #canvasContainer {
     margin: auto;
     width: 80%;
@@ -564,8 +573,11 @@ export default {
       text-align: center;
       color: white;
       font-size: 18px;
-      line-height: 36px;
+      line-height: 38px;
       user-select: none;
+    }
+    > div:hover {
+      background: rgb(15, 123, 231);
     }
   }
 }
