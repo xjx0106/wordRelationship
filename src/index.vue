@@ -11,7 +11,7 @@
 import G6 from "@antv/g6"; // 导入G6图引擎
 import data from "./components/wordRelationshipData.json";
 export default {
-  name: 'WordRelationship',
+  name: "WordRelationship",
   components: {},
   data() {
     return {
@@ -20,7 +20,7 @@ export default {
       natures: [], // 从dependenciesData解析所得的【词性】，用于可视化渲染和数据修改
       natureTypes: [], // 从dependenciesData解析所得的【词性的类型】，用于元素链下拉菜单选择
       edges: [], // 从dependenciesData解析所得的【关系】，用于可视化渲染
-    }
+    };
   },
   created() {
     console.log("page on create");
@@ -46,25 +46,25 @@ export default {
       this.edges = []; // 从dependenciesData解析所得的【关系】，用于可视化渲染
 
       let natureTypeTemp = []; // 声明临时数组用于在本次渲染中存放natures，以及以下10行用于去重natureType并存到natureTypes
-      this.dependenciesData.nodes.forEach(items => {
+      this.dependenciesData.nodes.forEach((items) => {
         if (natureTypeTemp.indexOf(items.nature) === -1) {
           natureTypeTemp.push(items.nature);
         }
       });
-      natureTypeTemp.forEach(items => {
+      natureTypeTemp.forEach((items) => {
         let singleNature = {
           value: items,
-          label: items
+          label: items,
         };
         this.natureTypes.push(singleNature);
       });
       // 以下5行用于将获取到的数据的nature按顺序存到natures里
-      this.dependenciesData.nodes.forEach(item => {
+      this.dependenciesData.nodes.forEach((item) => {
         this.words.push(item.word);
         let singleNature = { value: item.nature };
         this.natures.push(singleNature);
       });
-      this.dependenciesData.relations.forEach(item => {
+      this.dependenciesData.relations.forEach((item) => {
         this.edges.push(item);
       });
       console.log("finish dispose data");
@@ -86,7 +86,7 @@ export default {
         { id: 5, word: "#FFA113", stroke: "#FAD337", fill: "#FFF5CB" }, // 橙色
         { id: 6, word: "#8199F5", stroke: "#97A9EE", fill: "#EBEFFF" }, // 蓝紫色
         { id: 7, word: "#EB2F96", stroke: "#FFADD2", fill: "#FFF0F6" }, // 桃红色
-        { id: 8, word: "#CE7B55", stroke: "#BF9E8F", fill: "#FFEBE2" } // 中褐色
+        { id: 8, word: "#CE7B55", stroke: "#BF9E8F", fill: "#FFEBE2" }, // 中褐色
         // { id: 10, word: "orange", stroke: "orange", fill: "orange" }
       ];
       // 词项的统一样式配置
@@ -94,21 +94,21 @@ export default {
         //词项里的文字的配置，如“福建”、“隧道”
         labelCfg: {
           style: {
-            fontSize: 18 //词项的文字的大小
-          }
+            fontSize: 18, //词项的文字的大小
+          },
         },
         //词项的底色方块大小
         size: [48, 24],
         //词项的方块的配置
         style: {
           fill: "#A5EBFF", //淡青色
-          stroke: "#A5EBFF" //淡青色
+          stroke: "#A5EBFF", //淡青色
         },
         anchorPoints: [
           [0, 0], //左上角——index:0
           [1, 0], //右上角——index:1
-          [0.5, 1] //下面的点——index:2
-        ]
+          [0.5, 1], //下面的点——index:2
+        ],
       };
       // 标注的统一样式配置
       let stylesOfTags = {
@@ -116,8 +116,8 @@ export default {
         labelCfg: {
           style: {
             fontSize: 15, //标注的文字的大小,(该G6引擎default 18)
-            fill: "000000"
-          }
+            fill: "000000",
+          },
         },
         //标注的底色方块大小
         size: [32, 24], // [32, 24],
@@ -125,14 +125,14 @@ export default {
         style: {
           fill: "#DEE9FF", //极其淡蓝色
           stroke: "#696969", //灰色
-          radius: 5
+          radius: 5,
         },
         anchorPoints: [
           [0, 0], //左上角——index:0
           [1, 0], //右上角——index:1
           [0.5, 1], //下面的点——index:2
-          [0.5, 0] //下面的点——index:3
-        ]
+          [0.5, 0], //下面的点——index:3
+        ],
       };
       // 边的统一样式配置
       let stylesOfEdges = {
@@ -142,14 +142,14 @@ export default {
           stroke: "#F6BD16", //橙色
           endArrow: {
             path: G6.Arrow.triangle(0, 0, 0),
-            d: 0
+            d: 0,
           },
           startArrow: {
             path: G6.Arrow.triangle(8, 12, 0),
             d: 0,
-            fill: "#F6BD16"
-          }
-        }
+            fill: "#F6BD16",
+          },
+        },
       };
       // 括号的统一样式配置
       let stylesOfBrackets = {
@@ -160,13 +160,13 @@ export default {
           stroke: "#adadad",
           startArrow: {
             path: G6.Arrow.triangle(0, 0, 0),
-            d: 3
+            d: 3,
           },
           endArrow: {
             path: G6.Arrow.triangle(0, 0, 0),
-            d: 3
-          }
-        }
+            d: 3,
+          },
+        },
       };
 
       // G6引擎的点和边数据
@@ -200,40 +200,40 @@ export default {
           type: "rect",
           style: {
             fill: "#DEE9FF", //极其淡蓝色
-            stroke: "#5B8FF9" //微深蓝色
+            stroke: "#5B8FF9", //微深蓝色
           },
           labelCfg: {
             style: {
-              fontSize: 18
-            }
-          }
+              fontSize: 18,
+            },
+          },
         },
         defaultEdge: {
           type: "arc",
           style: {
-            stroke: "#F6BD16" //橙色
+            stroke: "#F6BD16", //橙色
           },
           anchorPoints: [
             [0.5, 1],
             [0, 0],
-            [1, 0]
+            [1, 0],
           ],
           labelCfg: {
             autoRotate: true,
-            refY: 5
-          }
+            refY: 5,
+          },
         },
         modes: {
           // 支持的 behavior
-          default: ["drag-node", "drag-canvas"]
-        }
+          default: ["drag-node", "drag-canvas"],
+        },
       });
 
       // let res = this.dependenciesData;
       // 组装的数据
       let data = {
         nodes: [],
-        edges: []
+        edges: [],
       };
 
       let assignedColor = []; // 用于记录颜色顺序
@@ -260,7 +260,7 @@ export default {
           size: stylesOfTags.size,
           // style: stylesOfTags.style,
           style: stylesOfTags.style,
-          anchorPoints: stylesOfTags.anchorPoints
+          anchorPoints: stylesOfTags.anchorPoints,
         };
         // console.log(singleNode);
         // 这个switch用于判断词项的类型从而设置它框框的尺寸
@@ -269,28 +269,28 @@ export default {
           case "中文":
             singleNode.size = [
               stylesOfTags.labelCfg.style.fontSize * item.value.length + 12,
-              stylesOfTags.labelCfg.style.fontSize + 12
+              stylesOfTags.labelCfg.style.fontSize + 12,
             ];
             // console.log(item.value + " 是中文，宽度是 " + 24 * item.value.length);
             break;
           case "英文":
             singleNode.size = [
               0.5 * stylesOfTags.labelCfg.style.fontSize * item.length,
-              stylesOfTags.labelCfg.style.fontSize
+              stylesOfTags.labelCfg.style.fontSize,
             ];
             // console.log(item.value + " 是英文，宽度是 " + 12 * item.value.length);
             break;
           case "数字":
             singleNode.size = [
               (0.5 * stylesOfTags.labelCfg.style.fontSize + 2) * item.length,
-              stylesOfTags.labelCfg.style.fontSize
+              stylesOfTags.labelCfg.style.fontSize,
             ];
             // console.log(item.value + " 是数字，宽度是 " + 14 * item.value.length);
             break;
           case "符号":
             singleNode.size = [
               stylesOfTags.labelCfg.style.fontSize * item.length,
-              stylesOfTags.labelCfg.style.fontSize
+              stylesOfTags.labelCfg.style.fontSize,
             ];
             // console.log(item.value + " 是符号，宽度是 " + 24 * item.value.length);
             break;
@@ -348,7 +348,7 @@ export default {
           style: stylesOfWordItems.style,
           size: [48, 24],
           labelCfg: stylesOfWordItems.labelCfg,
-          anchorPoints: stylesOfWordItems.anchorPoints
+          anchorPoints: stylesOfWordItems.anchorPoints,
         };
         // 这个switch用于判断词项的类型从而设置它框框的尺寸
         switch (this.checkWordType(item)) {
@@ -356,7 +356,7 @@ export default {
             // console.log("中文中文");
             singleNode.size = [
               stylesOfWordItems.labelCfg.style.fontSize * item.length,
-              stylesOfWordItems.labelCfg.style.fontSize
+              stylesOfWordItems.labelCfg.style.fontSize,
             ];
             // console.log(items.word + " 是中文，宽度是 " + 24 * items.word.length);
             break;
@@ -364,7 +364,7 @@ export default {
             // console.log(items.word.length);
             singleNode.size = [
               0.5 * stylesOfWordItems.labelCfg.style.fontSize * item.length,
-              stylesOfWordItems.labelCfg.style.fontSize
+              stylesOfWordItems.labelCfg.style.fontSize,
             ];
             // console.log(items.word + " 是英文，宽度是 " + 12 * items.word.length);
             break;
@@ -373,7 +373,7 @@ export default {
             singleNode.size = [
               (0.5 * stylesOfWordItems.labelCfg.style.fontSize + 2) *
                 item.length,
-              stylesOfWordItems.labelCfg.style.fontSize
+              stylesOfWordItems.labelCfg.style.fontSize,
             ];
             // console.log(items.word + " 是数字，宽度是 " + 14 * items.word.length);
             break;
@@ -381,7 +381,7 @@ export default {
             // console.log(items.word.length);
             singleNode.size = [
               stylesOfWordItems.labelCfg.style.fontSize * item.length,
-              stylesOfWordItems.labelCfg.style.fontSize
+              stylesOfWordItems.labelCfg.style.fontSize,
             ];
             // console.log(items.word + " 是符号，宽度是 " + 24 * items.word.length);
             break;
@@ -399,7 +399,7 @@ export default {
           targetAnchor: stylesOfEdges.sourceAnchor,
           label: items.label,
           style: stylesOfEdges.style,
-          curveOffset: 0
+          curveOffset: 0,
         };
         //用于判断线的跨度（跨过了段）来决定上凸的量
         {
@@ -453,7 +453,7 @@ export default {
             targetAnchor: 0,
             type: stylesOfBrackets.type,
             curvePosition: stylesOfBrackets.curvePosition,
-            style: stylesOfBrackets.style
+            style: stylesOfBrackets.style,
           };
           let singleBracketRight = {
             id: "edge" + JSON.stringify(this.edges.length + i * 2 + 1),
@@ -463,7 +463,7 @@ export default {
             targetAnchor: 1,
             type: stylesOfBrackets.type,
             curvePosition: stylesOfBrackets.curvePosition,
-            style: stylesOfBrackets.style
+            style: stylesOfBrackets.style,
           };
           data.edges.push(singleBracketLeft);
           data.edges.push(singleBracketRight);
@@ -474,9 +474,9 @@ export default {
       // eslint-disable-next-line no-constant-condition
       if (false) {
         // 根据所分配的颜色列表assignedColor赋予颜色
-        data.nodes.forEach(node => {
+        data.nodes.forEach((node) => {
           // console.log("现在在处理" + node.label);
-          assignedColor.forEach(singleColor => {
+          assignedColor.forEach((singleColor) => {
             if (node.label === singleColor.nature) {
               // 赋予颜色
               // console.log("赋予颜色");
@@ -527,22 +527,27 @@ export default {
         // console.log(word + "符号");
         return "符号";
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>
-
+html {
+  height: 100%;
+}
 body {
+  margin: 0px;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
   background-color: #e1e1e1;
-  padding: 10px;
 }
 .main {
-  width: 100%;
   height: 100%;
+  width: 100%;
   background: white;
-  padding-top: 100px;
+  box-sizing: border-box;
 }
 #canvasContainer {
   margin: auto;
@@ -553,10 +558,10 @@ body {
 }
 .buttons {
   border-top: 1px solid #8a98a126;
-  margin-top: 100px;
+  position:inherit;
   height: 100px;
   width: 100%;
-  background-color: #87CEFA30;
+  background-color: #87cefa30;
 }
 .button {
   margin: auto;
