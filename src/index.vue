@@ -532,49 +532,53 @@ export default {
 };
 </script>
 
+<style scoped lang="scss">
+.main {
+  background: white;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 100px;
+  #canvasContainer {
+    margin: auto;
+    width: 80%;
+    height: 400px;
+    box-shadow: 0px 0px 20px 0px #c1c1c1;
+    border-radius: 30px;
+  }
+  .buttons {
+    border-top: 1px solid #8a98a126;
+    position: fixed;
+    height: 100px;
+    width: calc(100% - 40px);
+    bottom: 20px;
+    background-color: #87cefa30;
+    > div {
+      margin: auto;
+      margin-top: 30px;
+      width: 80px;
+      height: 40px;
+      background: #18f;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      color: white;
+      font-size: 18px;
+      line-height: 36px;
+      user-select: none;
+    }
+  }
+}
+</style>
 <style>
 html {
   height: 100%;
+  background-color: #e1e1e1;
 }
 body {
   margin: 0px;
   height: 100%;
   padding: 20px;
   box-sizing: border-box;
-  background-color: #e1e1e1;
-}
-.main {
-  height: 100%;
-  width: 100%;
-  background: white;
-  box-sizing: border-box;
-}
-#canvasContainer {
-  margin: auto;
-  width: 80%;
-  height: 400px;
-  box-shadow: 0px 0px 20px 0px #c1c1c1;
-  border-radius: 30px;
-}
-.buttons {
-  border-top: 1px solid #8a98a126;
-  position:inherit;
-  height: 100px;
-  width: 100%;
-  background-color: #87cefa30;
-}
-.button {
-  margin: auto;
-  margin-top: 30px;
-  width: 80px;
-  height: 40px;
-  background: #18f;
-  border-radius: 10px;
-  cursor: pointer;
-  text-align: center;
-  color: white;
-  font-size: 18px;
-  line-height: 36px;
-  user-select: none;
 }
 </style>

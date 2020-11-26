@@ -9,9 +9,11 @@
     "start": "vue-cli-service serve"
   },
   "dependencies": {
+    "@antv/g6": "^3.8.0",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11",
-    "@antv/g6": "^3.8.0"
+    "sass": "^1.29.0",
+    "sass-loader": "^10.1.0",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
