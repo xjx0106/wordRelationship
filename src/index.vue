@@ -19,7 +19,6 @@ export default {
       dependenciesData: {}, // 可视化区域的数据（请求后保存在这里）
       words: [], // 从dependenciesData解析所得的【词项】，用于可视化渲染
       natures: [], // 从dependenciesData解析所得的【词性】，用于可视化渲染和数据修改
-      natureTypes: [], // 从dependenciesData解析所得的【词性的类型】，用于元素链下拉菜单选择
       edges: [], // 从dependenciesData解析所得的【关系】，用于可视化渲染
     };
   },
@@ -31,6 +30,9 @@ export default {
   },
   methods: {
     // 加载数据
+    /**
+     * 这个操作主要是将获取、加载、请求来的可视化数据（data）赋值到本地（dependenciesData），再来进行本地操作（disposeData()）。
+     */
     loadData() {
       console.log("start load data");
       document.getElementById("canvasContainer").innerHTML = "";
@@ -39,26 +41,16 @@ export default {
       this.disposeData();
     },
     // 处理数据
+    /**
+     * 将本地总数据dependenciesData拆解成词项、词性、词性类型、关系，分别存在本地，用于G6组装数据的时候方便提取。
+     */
     disposeData() {
       console.log("start dispose data");
       this.words = []; // 从dependenciesData解析所得的【词项】，用于可视化渲染
       this.natures = []; // 从dependenciesData解析所得的【词性】，用于可视化渲染和数据修改
-      this.natureTypes = []; // 从dependenciesData解析所得的【词性的类型】，用于元素链下拉菜单选择
       this.edges = []; // 从dependenciesData解析所得的【关系】，用于可视化渲染
 
-      let natureTypeTemp = []; // 声明临时数组用于在本次渲染中存放natures，以及以下10行用于去重natureType并存到natureTypes
-      this.dependenciesData.nodes.forEach((items) => {
-        if (natureTypeTemp.indexOf(items.nature) === -1) {
-          natureTypeTemp.push(items.nature);
-        }
-      });
-      natureTypeTemp.forEach((items) => {
-        let singleNature = {
-          value: items,
-          label: items,
-        };
-        this.natureTypes.push(singleNature);
-      });
+      
       // 以下5行用于将获取到的数据的nature按顺序存到natures里
       this.dependenciesData.nodes.forEach((item) => {
         this.words.push(item.word);
