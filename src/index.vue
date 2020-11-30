@@ -412,6 +412,19 @@ export default {
         }
       }
 
+      // 给标签分配颜色
+      // let naturesType = [];
+      // this.natures.forEach(item1 => {
+      //   naturesType.forEach(item2 => {
+      //     if(item2 == item1) {
+      //       console.log("you");
+      //     }else{
+      //       naturesType.push(item1);
+      //     }
+      //   })
+      // });
+      
+
       // console.log(data.nodes);
 
       //G6引擎数据装载
