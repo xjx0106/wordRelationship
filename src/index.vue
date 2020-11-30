@@ -20,6 +20,18 @@ export default {
       words: [], // 从dependenciesData解析所得的【词项】，用于可视化渲染
       natures: [], // 从dependenciesData解析所得的【词性】，用于可视化渲染和数据修改
       edges: [], // 从dependenciesData解析所得的【关系】，用于可视化渲染
+
+      prefabColors: [ // 预置颜色
+        { id: 0, word: "#188CFF", stroke: "#91D5FF", fill: "#E6F7FF" }, // 蓝色
+        { id: 1, word: "#13C2C2", stroke: "#87E8DE", fill: "#E6FFFB" }, // 薄荷绿
+        { id: 2, word: "#52C41A", stroke: "#B7EB8F", fill: "#F6FFED" }, // 柠檬绿
+        { id: 3, word: "#722ED1", stroke: "#D3ADF7", fill: "#F9F0FF" }, // 紫色
+        { id: 4, word: "#FA541C", stroke: "#FFBB96", fill: "#FFF2E8" }, // 红色
+        { id: 5, word: "#FFA113", stroke: "#FAD337", fill: "#FFF5CB" }, // 橙色
+        { id: 6, word: "#8199F5", stroke: "#97A9EE", fill: "#EBEFFF" }, // 蓝紫色
+        { id: 7, word: "#EB2F96", stroke: "#FFADD2", fill: "#FFF0F6" }, // 桃红色
+        { id: 8, word: "#CE7B55", stroke: "#BF9E8F", fill: "#FFEBE2" }, // 中褐色
+      ]
     };
   },
   created() {
@@ -29,8 +41,8 @@ export default {
     console.log("page mounted");
   },
   methods: {
-    // 加载数据
-    /**
+    /** 加载数据
+     * 
      * 这个操作主要是将获取、加载、请求来的可视化数据（data）赋值到本地（dependenciesData），再来进行本地操作（disposeData()）。
      */
     loadData() {
@@ -40,8 +52,7 @@ export default {
       console.log("finish load data");
       this.disposeData();
     },
-    // 处理数据
-    /**
+    /** 处理数据
      * 将本地总数据dependenciesData拆解成词项、词性、词性类型、关系，分别存在本地，用于G6组装数据的时候方便提取。
      */
     disposeData() {
@@ -50,7 +61,6 @@ export default {
       this.natures = []; // 从dependenciesData解析所得的【词性】，用于可视化渲染和数据修改
       this.edges = []; // 从dependenciesData解析所得的【关系】，用于可视化渲染
 
-      
       // 以下5行用于将获取到的数据的nature按顺序存到natures里
       this.dependenciesData.nodes.forEach((item) => {
         this.words.push(item.word);
@@ -63,25 +73,16 @@ export default {
       console.log("finish dispose data");
       this.renderData();
     },
-    // 渲染数据
+    /** 渲染数据
+     * 
+     */
     renderData() {
       console.log("start render data");
       // 先清空原G6画布数据
       document.getElementById("canvasContainer").innerHTML = "";
 
-      // 随机预置颜色
-      let prefabColors = [
-        { id: 0, word: "#188CFF", stroke: "#91D5FF", fill: "#E6F7FF" }, // 蓝色
-        { id: 1, word: "#13C2C2", stroke: "#87E8DE", fill: "#E6FFFB" }, // 薄荷绿
-        { id: 2, word: "#52C41A", stroke: "#B7EB8F", fill: "#F6FFED" }, // 柠檬绿
-        { id: 3, word: "#722ED1", stroke: "#D3ADF7", fill: "#F9F0FF" }, // 紫色
-        { id: 4, word: "#FA541C", stroke: "#FFBB96", fill: "#FFF2E8" }, // 红色
-        { id: 5, word: "#FFA113", stroke: "#FAD337", fill: "#FFF5CB" }, // 橙色
-        { id: 6, word: "#8199F5", stroke: "#97A9EE", fill: "#EBEFFF" }, // 蓝紫色
-        { id: 7, word: "#EB2F96", stroke: "#FFADD2", fill: "#FFF0F6" }, // 桃红色
-        { id: 8, word: "#CE7B55", stroke: "#BF9E8F", fill: "#FFEBE2" }, // 中褐色
-        // { id: 10, word: "orange", stroke: "orange", fill: "orange" }
-      ];
+      
+      
       // 词项的统一样式配置
       let stylesOfWordItems = {
         //词项里的文字的配置，如“福建”、“隧道”
@@ -127,7 +128,7 @@ export default {
           [0.5, 0], //下面的点——index:3
         ],
       };
-      // 边的统一样式配置
+      // 连线的统一样式配置
       let stylesOfEdges = {
         sourceAnchor: 3, //1
         targetAnchor: 3, //0
@@ -164,7 +165,6 @@ export default {
 
       // G6引擎的点和边数据
       /*
-       *详见外面我写的《词性标注官网的格式自己修改的.js》
        *
         const data = {
           nodes: [{……},{……}],
@@ -229,18 +229,6 @@ export default {
         edges: [],
       };
 
-      let assignedColor = []; // 用于记录颜色顺序
-      // // 分配颜色
-      // this.natures.forEach((item, index) => {
-      //   let singleColor = {
-      //     nature: item.value,
-      //     id: index % prefabColors.length
-      //   };
-      //   assignedColor.push(singleColor);
-      // });
-
-      // console.log(assignedColor);
-
       // 这个遍历用于组装【标签】
       this.natures.forEach((item, index) => {
         let singleNode = {
@@ -289,48 +277,9 @@ export default {
             break;
         }
 
-        // console.log(assignedColor);
-        // assignedColor.forEach(singleColor => {
-        //   // console.log(singleColor.nature + "  " + item.value);
-        //   if (singleColor.nature === item.value) {
-        //     // console.log(prefabColors[singleColor.id].fill);
-        //     console.log(
-        //       "现在是 " +
-        //         singleColor.nature +
-        //         "  " +
-        //         item.value +
-        //         "  " +
-        //         prefabColors[singleColor.id].fill
-        //     );
-        //     singleNode.style.fill = prefabColors[singleColor.id].fill;
-        //     singleNode.labelCfg.style.fill = prefabColors[singleColor.id].word;
-        //     singleNode.style.stroke = prefabColors[singleColor.id].stroke;
-        //   } else {
-        //     console.log("no");
-        //   }
-        // });
-
-        // const temp = assignedColor.find(
-        //   singleColor => singleColor.nature === item.value
-        // );
-        // const style = prefabColors[temp.id];
-        // Object.assign(singleNode, {
-        //   style: {
-        //     fill: style.fill,
-        //     stroke: style.stroke,
-        //     radius: 5
-        //   },
-        //   labelCfg: {
-        //     style: {
-        //       fontSize: 15,
-        //       fill: style.word
-        //     }
-        //   }
-        // });
-
         data.nodes.push(singleNode);
       });
-      //这个遍历用于组装【词项】
+      // 这个遍历用于组装【词项】
       this.words.forEach((item, index) => {
         let singleNode = {
           label: item,
@@ -382,21 +331,21 @@ export default {
 
         data.nodes.push(singleNode);
       });
-      //这个遍历用于组装【关系】
-      this.edges.forEach((items, index) => {
+      // 这个遍历用于组装【关系】
+      this.edges.forEach((item, index) => {
         let singleEdge = {
           id: "edge" + index,
-          source: JSON.stringify(items.start),
-          target: JSON.stringify(items.end),
+          source: JSON.stringify(item.start),
+          target: JSON.stringify(item.end),
           sourceAnchor: stylesOfEdges.targetAnchor,
           targetAnchor: stylesOfEdges.sourceAnchor,
-          label: items.label,
+          label: item.label,
           style: stylesOfEdges.style,
           curveOffset: 0,
         };
         //用于判断线的跨度（跨过了段）来决定上凸的量
         {
-          switch (Math.abs(parseInt(items.start) - parseInt(items.end))) {
+          switch (Math.abs(parseInt(item.start) - parseInt(item.end))) {
             case 1:
               singleEdge.curveOffset = -15;
               break;
@@ -425,7 +374,7 @@ export default {
         }
         //这个if else 用于将那些逆向的线（它是下凹的）转成上凸。（通过修改curveOffset）
         {
-          if (parseInt(items.start) - parseInt(items.end) < 0) {
+          if (parseInt(item.start) - parseInt(item.end) < 0) {
             // console.log("该线条是逆向的");
             singleEdge.curveOffset = -singleEdge.curveOffset;
           } else {
@@ -434,7 +383,7 @@ export default {
         }
         data.edges.push(singleEdge);
       });
-      //这个循环用于组装【括号】
+      // 这个循环用于组装【括号】
       {
         // console.log(res.nodes.length);
         for (let i = 0; i < this.words.length; i++) {
@@ -463,35 +412,6 @@ export default {
         }
       }
 
-      // 这个遍历用于美化颜色
-      // eslint-disable-next-line no-constant-condition
-      if (false) {
-        // 根据所分配的颜色列表assignedColor赋予颜色
-        data.nodes.forEach((node) => {
-          // console.log("现在在处理" + node.label);
-          assignedColor.forEach((singleColor) => {
-            if (node.label === singleColor.nature) {
-              // 赋予颜色
-              // console.log("赋予颜色");
-              // console.log(prefabColors);
-              // console.log(
-              //   node.label +
-              //     " 字体颜色 " +
-              //     prefabColors[singleColor.id].word +
-              //     " 底色 " +
-              //     prefabColors[singleColor.id].fill +
-              //     " 边框颜色 " +
-              //     prefabColors[singleColor.id].stroke
-              // );
-              node.labelCfg.style.fill = JSON.stringify(
-                prefabColors[singleColor.id].word
-              );
-              node.style.stroke = prefabColors[singleColor.id].stroke;
-              node.style.fill = prefabColors[singleColor.id].fill;
-            }
-          });
-        });
-      }
       // console.log(data.nodes);
 
       //G6引擎数据装载
